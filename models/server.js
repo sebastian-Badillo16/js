@@ -1,6 +1,8 @@
 import express from 'express'
 import cors from 'cors';
 import dbconnection from '../database/config.js';
+import categoria from '../routes/categoria.js'  
+// import categoria from '../models/categoria.js'  
 
 
 class Server{
@@ -12,7 +14,7 @@ class Server{
       this.middlewares();
     }
 routes(){
-
+this.app.use('/api/categoria',categoria)
 
 }
 
@@ -37,3 +39,4 @@ listen(){
 
 export default Server
 
+ 
