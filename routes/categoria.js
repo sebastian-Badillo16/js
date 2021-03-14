@@ -12,10 +12,10 @@ router.post('/',categoriasControllers.categoriaPost);
 
 router.put('/:id',categoriasControllers.categoriaPut);
 
-router.put('/activar');
+router.put('/activar/:id',categoriasControllers.categoriaPutactivar);
 
-router.get('/desactivar');
+router.get('/desactivar/:id',categoriasControllers.categoriaPutDesactivar);
 
-router.delete('/')
+router.delete('/:id',categoriasControllers.categoriaPutDelete)
 
 export  default router;

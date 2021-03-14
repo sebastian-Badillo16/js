@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors';
 import dbconnection from '../database/config.js';
 import categoria from '../routes/categoria.js'  
-// import categoria from '../models/categoria.js'  
+import usuario from '../routes/usuario.js'
 
 
 class Server{
@@ -10,12 +10,13 @@ class Server{
       this.port=process.env.PORT;
       this.app = express();
       this.conectarBD();
-      this.routes();
       this.middlewares();
+      this.routes();
+      
     }
 routes(){
 this.app.use('/api/categoria',categoria)
-
+this.app.use('/api/usuarios',usuario)
 }
 
 async conectarBD(){
