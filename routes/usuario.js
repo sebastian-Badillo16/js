@@ -3,16 +3,18 @@ import usuarioControllers from '../controllers/usuario.js'
 
 const router = Router();
 
-router.get('/',usuarioControllers.usuarioGet);
+router.get('/', usuarioControllers.usuarioGet);
 
-router.get('/:id',usuarioControllers.usuarioGetByid);
+router.get('/:id', usuarioControllers.usuarioGetByid);
 
-router.post('/',usuarioControllers.usuarioPost);
+router.post('/', usuarioControllers.usuarioPost);
 
-router.put('/:id',usuarioControllers.usuarioPut);
+router.post('/login', usuarioControllers.login);
 
-router.put('/activar/:id',usuarioControllers.usuarioPutactivar);
+router.put('/:id', usuarioControllers.usuarioPut);
 
-router.put('/desactivar/:id',usuarioControllers.usuarioPutdesactivar);
+router.put('/activar/:id', usuarioControllers.usuarioPutactivar);
+
+router.put('/desactivar/:id', usuarioControllers.usuarioPutdesactivar);
 
 export default router;
