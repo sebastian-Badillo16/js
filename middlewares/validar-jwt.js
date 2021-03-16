@@ -5,12 +5,14 @@ import Usuario from '../models/usuario.js'
 const generarJWT = (uid = '') => {
     return new Promise((resolve, reject) => {
 
-        // checkToken()
+        checkToken()
 
         const payload = { uid }
         jwt.sign(payload, process.env.SecretPrivateKey), {
-            expiresIn: "2 days"
+            expiresIn: '7d'
         }, (err, token) => {
+            console.log(token);
+
             if (err) {
                 reject('No se puede crear el token ')
             } else {
@@ -21,7 +23,7 @@ const generarJWT = (uid = '') => {
 
     })
 
-};
+}
 
 const validarJWT = async (req, res, next) => {
     const token = req.header('token')
@@ -53,7 +55,7 @@ const validarJWT = async (req, res, next) => {
     } catch (error) {
         console.log(error);
         res.status(401).json({
-            msg:'Token no válido'
+            msg: 'Token no válido'
         })
     }
 
@@ -73,4 +75,4 @@ async function checkToken(token) {
 
 }
 
-export  { generarJWT, validarJWT }
+export { generarJWT, validarJWT }
