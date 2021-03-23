@@ -3,8 +3,9 @@ import Categoria from "../models/categoria.js";
 
 const categoriasControllers = {
     // get normal
-    categoriaGet: async (res, req) => {
-        const value = req.query.value;
+    categoriaGet: async (req, res) => {
+
+        const value = req.query.value?req.query.value:'';
         const categoria = await Categoria
             .find({
                 $or: [

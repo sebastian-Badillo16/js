@@ -69,10 +69,10 @@ const usuarioControllers = {
 
         }
 
-       const token=generarJWT(usuario.id);
+       const token= await generarJWT(usuario.id);
 
         res.json({
-          usuario,
+          usuario, 
           token
         })
 

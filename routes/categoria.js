@@ -5,14 +5,19 @@ import validadorCampos from '../middlewares/validar-campos.js'
 import existeCategoriaByid from '../helpers/categorias.js'
 import existeCategoriaBynombre from '../helpers/categorias.js'
 import {validarJWT} from '../middlewares/validar-jwt.js'
-// const {validarJWT}=validarJWTFunction
+import validarRoles from '../middlewares/validar-rol.js'
 
 const router = Router();
 
-router.get('/', categoriasControllers.categoriaGet);
+router.get('/',[
+    validarJWT,
+    validarRoles('ALMACENISTA_ROL'), 
+     validadorCampos
+], categoriasControllers.categoriaGet);
 
 router.get('/:id', [
      validarJWT,
+    validarRoles('ALMACENISTA_ROL'), 
      check('id', 'No es valido').isMongoId(),
      check('id').custom(existeCategoriaByid),
      validadorCampos
@@ -21,6 +26,7 @@ router.get('/:id', [
 
 router.post('/', [
     validarJWT,
+    validarRoles('ALMACENISTA_ROL'), 
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
     check('nombre').custom(existeCategoriaBynombre),
     validadorCampos
@@ -29,6 +35,7 @@ router.post('/', [
 
 router.put('/:id', [
     validarJWT,
+    validarRoles('ALMACENISTA_ROL'), 
     check('id', 'No es valido').isMongoId(),
     check('id').custom(existeCategoriaByid),
     check('nombre').custom(existeCategoriaBynombre),
@@ -38,12 +45,14 @@ router.put('/:id', [
 
 router.put('/activar/:id', [
     validarJWT,
+    validarRoles('ALMACENISTA_ROL'), 
     check('id', 'No es valido').isMongoId(),
     check('id').custom(existeCategoriaByid),
     validadorCampos
 ], categoriasControllers.categoriaPutactivar);
 
 router.get('/desactivar/:id', [
+    validarRoles('ALMACENISTA_ROL'), 
     check('id', 'No es valido').isMongoId(),
     check('id').custom(existeCategoriaByid),
     validadorCampos
@@ -51,6 +60,7 @@ router.get('/desactivar/:id', [
 
 router.delete('/:id', [
     validarJWT,
+    validarRoles('ALMACENISTA_ROL'), 
     check('id', 'No es valido').isMongoId(),
     check('id').custom(existeCategoriaByid),
     validadorCampos

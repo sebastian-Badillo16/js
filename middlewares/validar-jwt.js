@@ -3,27 +3,27 @@ import existeUsuarioById from '../helpers/usuarios.js';
 import Usuario from '../models/usuario.js'
 
 const generarJWT = (uid = '') => {
-    return new Promise((resolve, reject) => {
-
-        checkToken()
+    return new Promise((resolve, reject)=> {
+console.log(uid);
+        // checkToken()
 
         const payload = { uid }
-        jwt.sign(payload, process.env.SecretPrivateKey), {
+        jwt.sign(payload, process.env.SecretPrivateKey, {
             expiresIn: '7d'
-        }, (err, token) => {
-            console.log(token);
-
+        },(err,token) => {
+// console.log(err);
+console.log(token);
             if (err) {
                 reject('No se puede crear el token ')
             } else {
                 resolve(token)
             }
 
-        }
+        })
 
     })
 
-}
+};
 
 const validarJWT = async (req, res, next) => {
     const token = req.header('token')
@@ -53,7 +53,7 @@ const validarJWT = async (req, res, next) => {
 
         next()
     } catch (error) {
-        console.log(error);
+       
         res.status(401).json({
             msg: 'Token no válido'
         })
