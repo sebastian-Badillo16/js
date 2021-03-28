@@ -49,7 +49,7 @@ const categoriasControllers = {
         const { id } = req.params
         const { _id, estado, createAt, __v, ...resto } = req.body
 
-        const categoria = await Categoria.findByidAndupdate(id, resto);
+        const categoria = await Categoria.findByIdAndUpdate(id, resto);
 
         res.json({
             categoria
@@ -59,7 +59,7 @@ const categoriasControllers = {
 
     categoriaPutactivar: async (req, res) => {
         const { id } = req.params
-        const categoria = await Categoria.findByidAndupdate(id,{estado:1});
+        const categoria = await Categoria.findByIdAndUpdate(id,{estado:1});
         res.json({
             categoria
         })
@@ -68,7 +68,7 @@ const categoriasControllers = {
 
     categoriaPutDesactivar: async (req, res) => {
         const { id } = req.params
-        const categoria = await Categoria.findByidAndupdate(id,{estado:0});
+        const categoria = await Categoria.findByIdAndUpdate(id,{estado:0});
         res.json({
             categoria
         })
