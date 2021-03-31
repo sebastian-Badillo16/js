@@ -29,8 +29,8 @@ const personaController = {
     // post
     personaPost: async (req, res) => {
         try {
-            const { tipoPersona, nombre, tipoDocument, numeroDocument, ireccion, telefono, email } = req.body;
-            const persona = new Persona({ tipoPersona, nombre, tipoDocument, numeroDocument, ireccion, telefono, email });
+            const { tipoPersona, nombre, tipoDocument, numeroDocument, direccion, telefono, email } = req.body;
+            const persona = new Persona({ tipoPersona, nombre, tipoDocument, numeroDocument, direccion, telefono, email });
 
             await persona.save();
             res.json({
@@ -65,9 +65,9 @@ const personaController = {
 
     personaPutDesactivar: async (req, res) => {
         const { id } = req.params
-        const categoria = await Categoria.findByIdAndUpdate(id, { estado: 0 });
+        const persona = await Persona.findByIdAndUpdate(id, { estado: 0 });
         res.json({
-            categoria
+            persona
         })
 
     },

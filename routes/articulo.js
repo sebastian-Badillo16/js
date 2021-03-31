@@ -1,22 +1,69 @@
-import {Router} from 'express'
-
+import { Router } from 'express'
 import articulosControllers from '../controllers/articulo.js'
+import { validarJWT } from '../middlewares/validar-jwt.js'
+import validarRoles from '../middlewares/validar-rol.js'
+import validadorCampos from '../middlewares/validar-campos.js'
+import existeArticuloByid from '../helpers/articulo.js'
+import existeArticuloBynombre from '../helpers/articulo.js'
+import { check } from 'express-validator'
 
-const router=Router();
 
-router.get('/',articulosControllers.articulosGet)
+const router = Router();
 
-router.get('/:id',articulosControllers.articulosGet)
+router.get('/', [
+    validarJWT,
+    validarRoles('ALMACENISTA_ROL'),
+    validadorCampos
+], articulosControllers.articulosGet)
 
-router.post('/',articulosControllers.articulosPost)
+router.get('/:id', [
+    validarJWT,
+    validarRoles('ALMACENISTA_ROL'),
+    check('id', 'No es valido').isMongoId(),
+    check('id').custom(existeArticuloByid),
+    validadorCampos
+], articulosControllers.articulosGet)
 
-router.put ('/:id',articulosControllers.articulosPut)
+router.post('/', [
+    validarJWT,
+    validarRoles('ALMACENISTA_ROL'),
+    check('nombre', 'El nombre es obligatorio').not().isEmpty(),
+    check('nombre').custom(existeArticuloBynombre),
+    validadorCampos
 
-router.put ('/activar/:id',articulosControllers.articulosPutactivar)
+], articulosControllers.articulosPost)
 
-router.put ('/desactivar/:id',articulosControllers.articulosPutDesactivar)
+router.put('/:id', [validarJWT,
+    validarRoles('ALMACENISTA_ROL'),
+    check('id', 'No es valido').isMongoId(),
+    check('id').custom(existeArticuloByid),
+    check('nombre').custom(existeArticuloBynombre),
+    validadorCampos
 
-router.put ('/delete/:id',articulosControllers.articulosPutDelete)
+], articulosControllers.articulosPut)
+
+router.put('/activar/:id', [
+    validarJWT,
+    validarRoles('ALMACENISTA_ROL'),
+    check('id', 'No es valido').isMongoId(),
+    check('id').custom(existeArticuloByid),
+    validadorCampos
+], articulosControllers.articulosPutactivar)
+
+router.put('/desactivar/:id', [
+    validarRoles('ALMACENISTA_ROL'),
+    check('id', 'No es valido').isMongoId(),
+    check('id').custom(existeArticuloByid),
+    validadorCampos
+], articulosControllers.articulosPutDesactivar)
+
+router.delete('/:id', [
+    validarJWT,
+    validarRoles('ALMACENISTA_ROL'),
+    check('id', 'No es valido').isMongoId(),
+    check('id').custom(existeArticuloByid),
+    validadorCampos
+], articulosControllers.articulosPutDelete)
 
 
 export default router

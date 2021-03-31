@@ -16,7 +16,7 @@ router.put('/activar/:id', personaControllers.personaPutactivar)
 
 router.put('/desactivar/:id', personaControllers.personaPutDesactivar)
 
-router.put('/delete/:id', personaControllers.personaPutDelete)
+router.delete('/:id', personaControllers.personaPutDelete)
 
 
 export default router

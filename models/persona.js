@@ -1,11 +1,11 @@
 import mongoose from 'mongoose'
 
 const personaShema = mongoose.Schema({
-    tipoPersona: { type: String,  maxlength: 20 }, //cliente - prpvedor
-    nombre: { type: String, maxlength: 40 },
+    tipoPersona: { type: String, required:true, maxlength: 20 }, //cliente - prpvedor
+    nombre: { type: String,required:true, maxlength: 40 },
     tipoDocument: { type: String, required:true, maxlength: 25 }, // cc-- ti
     numeroDocument: { type: String, required:true },
-    direccion: { type: String,  },
+    direccion: {type:String, required:true, maxlenght:70},
     telefono: { type: String, required:true },
     email: { type: String, unique:true, maxlength: 40 },
     estado: { type: Number, default: 1 },
