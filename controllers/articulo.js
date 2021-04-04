@@ -19,7 +19,7 @@ const articulosControllers = {
 
   articulosPost: async (req, res) => {
     const { codigo, nombre, descripcion, precioventa, stock } = req.body
-    const articulo = new Articulo({  nombre, descripcion, precioventa, stock })
+    const articulo = new Articulo({ codigo, nombre, descripcion, precioventa, stock })
 
     await articulo.save();
     res.json({

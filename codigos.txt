@@ -1,0 +1,24 @@
+github
+git init
+git status
+git add .
+git status
+
+
+git commit -m "Mensaje"
+git remote add origin https://github.com/CristianFernandoRomero1/adsi-2067725.git
+git push -u origin master
+
+tag par github
+git tag
+git tag -a v1.0.0 -m "proyecto semilla"
+git tag
+git push --tags
+
+ heroku
+$ git add .
+$ git commit -am "make it better"
+$ git push heroku master
+
+
+
