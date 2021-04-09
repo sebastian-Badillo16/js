@@ -11,13 +11,13 @@ const router = Router();
 
 router.get('/',[
     validarJWT,
-    validarRoles('ALMACENISTA_ROL'), 
+    validarRoles('ALMACENISTA_ROL,ADMIN_ROL'), 
      validadorCampos
 ], categoriasControllers.categoriaGet);
 
 router.get('/:id', [
      validarJWT,
-    validarRoles('ALMACENISTA_ROL'), 
+    validarRoles('ALMACENISTA_ROL,ADMIN_ROL'), 
      check('id', 'No es valido').isMongoId(),
      check('id').custom(existeCategoriaByid),
      validadorCampos
@@ -26,7 +26,7 @@ router.get('/:id', [
 
 router.post('/', [
     validarJWT,
-    validarRoles('ALMACENISTA_ROL'), 
+    validarRoles('ALMACENISTA_ROL,ADMIN_ROL'), 
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
     check('nombre').custom(existeCategoriaBynombre),
     validadorCampos
@@ -35,7 +35,7 @@ router.post('/', [
 
 router.put('/:id', [
     validarJWT,
-    validarRoles('ALMACENISTA_ROL'), 
+    validarRoles('ALMACENISTA_ROL,ADMIN_ROL'), 
     check('id', 'No es valido').isMongoId(),
     check('id').custom(existeCategoriaByid),
     check('nombre').custom(existeCategoriaBynombre),
@@ -45,14 +45,14 @@ router.put('/:id', [
 
 router.put('/activar/:id', [
     validarJWT,
-    validarRoles('ALMACENISTA_ROL'), 
+    validarRoles('ALMACENISTA_ROL,ADMIN_ROL'), 
     check('id', 'No es valido').isMongoId(),
     check('id').custom(existeCategoriaByid),
     validadorCampos
 ], categoriasControllers.categoriaPutactivar);
 
 router.get('/desactivar/:id', [
-    validarRoles('ALMACENISTA_ROL'), 
+    validarRoles('ALMACENISTA_ROL,ADMIN_ROL'), 
     check('id', 'No es valido').isMongoId(),
     check('id').custom(existeCategoriaByid),
     validadorCampos
@@ -60,7 +60,7 @@ router.get('/desactivar/:id', [
 
 router.delete('/:id', [
     validarJWT,
-    validarRoles('ALMACENISTA_ROL'), 
+    validarRoles('ALMACENISTA_ROL,ADMIN_ROL'), 
     check('id', 'No es valido').isMongoId(),
     check('id').custom(existeCategoriaByid),
     validadorCampos

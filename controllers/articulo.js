@@ -18,8 +18,8 @@ const articulosControllers = {
     },
 
   articulosPost: async (req, res) => {
-    const { codigo, nombre, descripcion, precioventa, stock } = req.body
-    const articulo = new Articulo({ codigo, nombre, descripcion, precioventa, stock })
+    const { cantidad, codigo, nombre, descripcion, precioventa, stock } = req.body
+    const articulo = new Articulo({ cantidad, codigo, nombre, descripcion, precioventa, stock })
 
     await articulo.save();
     res.json({
@@ -31,7 +31,7 @@ const articulosControllers = {
     const { id } = req.params
     const { _id, estado, createAt, __v, ...resto } = req.body
 
-    // const articulo = await Articulo.findByidAndUpdate(id, resto);
+    
 const articulo = await Articulo.findByIdAndUpdate (id, resto);
     res.json({
       articulo

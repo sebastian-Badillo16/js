@@ -28,7 +28,7 @@ const usuarioControllers = {
         res.json({
             usuario
         })
-    },
+    }, 
 
     usuarioPost: async (req, res) => {
         const { nombre, email, password, rol } = req.body;

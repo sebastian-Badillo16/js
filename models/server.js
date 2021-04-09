@@ -7,6 +7,7 @@ import articulo  from '../routes/articulo.js'
 // import persona from '../routes/persona.js'
 import Persona from '../routes/persona.js'
 import compra from '../routes/compra.js'
+import venta from '../routes/venta.js'
 
 class Server{
     constructor(){
@@ -23,6 +24,8 @@ this.app.use('/api/usuarios',usuario)
 this.app.use('/api/articulo',articulo)
 this.app.use('/api/persona',Persona)
 this.app.use('/api/compra',compra)
+this.app.use('/api/venta',venta)
+
 
 }
 

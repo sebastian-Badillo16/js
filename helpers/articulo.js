@@ -12,9 +12,9 @@ const  existeArticuloBynombre=async (nombre)=>{
 
     const existe= await Articulo.findOne({nombre})
 
-    if (!existe) throw new Error(`ya exsiste un articulo con ese nombre  `)
+    if (existe) throw new Error(`ya exsiste un articulo con ese nombre  `)
 
 }
 
 
- export default {existeArticuloByid,existeArticuloBynombre}
+ export {existeArticuloByid,existeArticuloBynombre}

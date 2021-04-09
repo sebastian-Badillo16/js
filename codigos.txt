@@ -6,7 +6,7 @@ git status
 
 
 git commit -m "Mensaje"
-git remote add origin https://github.com/CristianFernandoRomero1/adsi-2067725.git
+git remote add origin https://github.com/sebastian-Badillo16/js.git
 git push -u origin master
 
 tag par github
