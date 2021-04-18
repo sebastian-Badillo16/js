@@ -4,29 +4,30 @@ import { validarJWT } from '../middlewares/validar-jwt.js'
 import validadorCampos from '../middlewares/validar-campos.js'
 import { check } from 'express-validator'
 import validarRoles from '../middlewares/validar-rol.js'
-import {existeCompraByid,existeCompraBynumComprante} from '../helpers/compra.js'
+import {existeCompraByid,existeCompraBynumComprobante,existeTipoComprobante,existeSerieComprobante} from '../helpers/compra.js'
 
 const router = Router();
 router.get('/', [
     validarJWT,
     validarRoles('ALMACENISTA_ROL,ADMIN_ROL'),
     validadorCampos
-], compraControllers.compraGet)
+], compraControllers.compraGet) //correcto
 
 router.get('/:id', [
     validarJWT,
     validarRoles('ALMACENISTA_ROL,ADMIN_ROL'),
-    validadorCampos
-], compraControllers.compraGetByid)
+    validadorCampos 
+], compraControllers.compraGetByid) //correcto
 
 
-router.post('/',[
+router.post('/',[ 
     validarJWT,
-    validarRoles('ALMACENISTA_ROL,ADMIN_ROL' ),
-    // check(' num_Comprobante',' numero, es obligatorio').not().isEmpty(),
-    check(' num_Comprobante').custom(existeCompraBynumComprante),
+    validarRoles('VENDEDOR_ROL,ADMIN_ROL' ),
+    check(' num_Comprobante').custom(existeCompraBynumComprobante),
+    check(' serie_Comprobante').custom(existeSerieComprobante),
+    check('tipoComprobante').custom(existeTipoComprobante),
     validadorCampos
-], compraControllers.compraPost)
+], compraControllers.compraPost)//correcto
 
 
 router.put('/:id', [
@@ -34,18 +35,18 @@ router.put('/:id', [
     validarRoles('ALMACENISTA_ROL,ADMIN_ROL'),
     check('id', 'No es valido').isMongoId(),
     check('id').custom(existeCompraByid),
-    check('nombre').custom(existeCompraBynumComprante),
+    check('num_Comprobante').custom(existeCompraBynumComprobante),
     validadorCampos
 
-], compraControllers.compraPut)
+], compraControllers.compraPut)//correcto
 
 router.put('/activar/:id', [
     validarJWT,
     validarRoles('ALMACENISTA_ROL,ADMIN_ROL'),
-    check('id', 'No es valido').isMongoId(),
+    check('id', 'No es valido').isMongoId(),  
     check('id').custom(existeCompraByid),
-    validadorCampos
-], compraControllers.compraPutactivar)
+    validadorCampos 
+], compraControllers.compraPutactivar) //correcto 
 
 router.put('/desactivar/:id', [
     validarJWT,
@@ -53,7 +54,7 @@ router.put('/desactivar/:id', [
     check('id', 'No es valido').isMongoId(),
     check('id').custom(existeCompraByid),
     validadorCampos
-], compraControllers.compraPutDesactivar)
+], compraControllers.compraPutDesactivar) //correcto
 
 router.delete('/:id', [
     validarJWT,
@@ -61,7 +62,7 @@ router.delete('/:id', [
     check('id', 'No es valido').isMongoId(),
     check('id').custom(existeCompraByid),
     validadorCampos
-], compraControllers.compraPutDelete)
+], compraControllers.compraPutDelete) //correcto
 
 
 export default router

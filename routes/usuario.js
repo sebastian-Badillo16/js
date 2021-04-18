@@ -8,7 +8,7 @@ router.get('/', usuarioControllers.usuarioGet);
 router.get('/:id', usuarioControllers.usuarioGetByid);
 
 router.post('/', usuarioControllers.usuarioPost);
-
+ 
 router.post('/login', usuarioControllers.login);
 
 router.put('/:id', usuarioControllers.usuarioPut);

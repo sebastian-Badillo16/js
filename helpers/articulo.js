@@ -1,11 +1,11 @@
 import Articulo from "../models/articulo.js"
 
 
-const  existeArticuloByid=async (id)=>{
+const  existeArticuloByid=async (_id)=>{
 
-    const existe= await Articulo.findById(id)
+    const existe= await Articulo.findById(_id)
 
-    if (!existe) throw new Error(`El id no existe ${id}`)
+    if (!existe) throw new Error(`El id no existe ${_id}`)
 
 }
 const  existeArticuloBynombre=async (nombre)=>{

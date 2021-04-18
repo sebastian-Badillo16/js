@@ -22,23 +22,22 @@ router.get('/:id', [
     check('id').custom(existeArticuloByid), 
     validadorCampos
 ], articulosControllers.articulosGet)
-
+ 
 router.post('/', [
-    validarJWT,
+    validarJWT, 
     validarRoles('ALMACENISTA_ROL,ADMIN_ROL'),
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
     check('nombre').custom(existeArticuloBynombre),
     validadorCampos
-
 ], articulosControllers.articulosPost)
 
-router.put('/:id', [validarJWT,
+router.put('/:id', [
+    validarJWT,
     validarRoles('ALMACENISTA_ROL,ADMIN_ROL'),
     check('id', 'No es valido').isMongoId(),
     check('id').custom(existeArticuloByid),
     check('nombre').custom(existeArticuloBynombre),
     validadorCampos
-
 ], articulosControllers.articulosPut)
 
 router.put('/activar/:id', [
@@ -50,6 +49,7 @@ router.put('/activar/:id', [
 ], articulosControllers.articulosPutactivar)
 
 router.put('/desactivar/:id', [
+    validarJWT,
     validarRoles('ALMACENISTA_ROL,ADMIN_ROL'),
     check('id', 'No es valido').isMongoId(),
     check('id').custom(existeArticuloByid),

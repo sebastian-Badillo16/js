@@ -12,7 +12,7 @@ router.get('/', [
     validarJWT,
     validarRoles('VENDEDOR_ROL', 'ADMIN_ROL'),
     validadorCampos
-], ventacontrollers.ventaGet);
+], ventacontrollers.ventaGet); // si devuelve
 
 router.get('/:id', [
     validarJWT,
@@ -20,24 +20,46 @@ router.get('/:id', [
     check('id', 'No es valido').isMongoId(),
     check('id').custom(existeVentaByid),
     validadorCampos
-], ventacontrollers.ventaGetById);
+], ventacontrollers.ventaGetById);// si devuelve  by id
 
 router.post('/', [
     validarJWT,
     validarRoles('VENDEDOR_ROL,ADMIN_ROL'),
-    check('serieComprobante', 'la serie comprobante es obligatorio').not().isEmpty(),
+    check('numComprobante', 'numero comprobante es obligatorio').not().isEmpty(),
     validadorCampos
-], ventacontrollers.ventaPost);
+], ventacontrollers.ventaPost); // si postea
 
-router.put('/:id',[validarRoles('ALMACENISTA_ROL,ADMIN_ROL'),
-check('id', 'No es valido').isMongoId(),
-check('id').custom(existeVentaByid),
-validadorCampos
-], ventacontrollers.ventaPut);
+router.put('/:id', [
+    validarJWT,
+    validarRoles('VENDEDOR_ROL,ADMIN_ROL'),
+    check('id', 'No es valido').isMongoId(),
+    check('id').custom(existeVentaByid),
+    validadorCampos
+], ventacontrollers.ventaPut); // si modifica
 
+router.put('/activar/:id', [
+    validarJWT,
+    validarRoles('VENDEDOR_ROL,ADMIN_ROL'),
+    check('id', 'No es valido').isMongoId(),
+    check('id').custom(existeVentaByid),
+    validadorCampos
+], ventacontrollers.ventaActivar); //si activa
 
-router.put('/activar/:id',ventacontrollers.ventaActivar);
+router.put('/desactivar/:id', [
+    validarJWT,
+    validarRoles('VENDEDOR_ROL,ADMIN_ROL'),
+    check('id', 'No es valido').isMongoId(),
+    check('id').custom(existeVentaByid),
+    validadorCampos
+], ventacontrollers.ventaDesactivar); // si desactiva
 
-router.put('/desactivar/:id', ventacontrollers.ventaDesactivar);
+router.delete('/:id', [
+    validarJWT,
+    validarRoles('VENDEDOR_ROL,ADMIN_ROL'),
+    check('id', 'No es valido').isMongoId(),
+    check('id').custom(existeVentaByid),
+    validadorCampos
+],ventacontrollers.ventaPutDelete) //correcto borra
+
 
 export default router;

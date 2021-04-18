@@ -1,8 +1,8 @@
 import Mongoose from "mongoose";
 
 const categoriaShema = Mongoose.Schema({
-    nombre: { type: String, required: true, maxlength: 50, unique: true },
-    descripcion: { type: String, maxlength: 250 },
+    nombre: { type: String, required: true, maxlength: 50 }, //correcto
+    descripcion: { type: String, maxlength: 250 }, //correcto
     estado: { type:Number, default: 1 },  //1: para activo 0: para inactivo
     createAt: { type:Date, default: Date.now }
 });

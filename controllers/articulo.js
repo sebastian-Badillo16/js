@@ -7,15 +7,16 @@ const articulosControllers = {
     res.json({
       articulos
     })
-  },
-  articuloGetByid: async (res, req) => {
+  },//correcto
+
+  articuloGetByid: async (req, res) => {
         const { id } = req.params;
         const articulo = await Articulo.findOne({ _id: id })
 
-        res.json({
-            articulo
+        res.json({ 
+            articulo 
         })
-    },
+    }, // mal,responde con  todos los articulos 
 
   articulosPost: async (req, res) => {
     const { cantidad, codigo, nombre, descripcion, precioventa, stock } = req.body
@@ -25,7 +26,7 @@ const articulosControllers = {
     res.json({
       articulo
     })
-  },
+  }, //correcto
 
   articulosPut: async (req, res) => {
     const { id } = req.params
@@ -37,7 +38,7 @@ const articulo = await Articulo.findByIdAndUpdate (id, resto);
       articulo
     })
 
-  },
+  }, //correcto
 
   articulosPutactivar: async (req, res) => {
     const { id } = req.params
@@ -47,7 +48,7 @@ const articulo = await Articulo.findByIdAndUpdate (id, resto);
       articulo
     })
 
-  },
+  }, //correcto
 
   articulosPutDesactivar: async (req, res) => {
     const { id } = req.params
@@ -56,7 +57,7 @@ const articulo = await Articulo.findByIdAndUpdate (id, resto);
      articulo
     })
 
-  },
+  }, //correcto
 
   articulosPutDelete: async (req, res) => {
     const { id } = req.params
@@ -65,7 +66,7 @@ const articulo = await Articulo.findByIdAndUpdate (id, resto);
       articulo
     })
 
-  },
-}
+  }, //correcto
+} 
 
 export default articulosControllers

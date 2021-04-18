@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Adsi sistema de compreventa2021",
   "main": "app.js",
+  
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",

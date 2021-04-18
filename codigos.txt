@@ -9,7 +9,7 @@ git commit -m "Mensaje"
 git remote add origin https://github.com/sebastian-Badillo16/js.git
 git push -u origin master
 
-tag par github
+tag para github
 git tag
 git tag -a v1.0.0 -m "proyecto semilla"
 git tag

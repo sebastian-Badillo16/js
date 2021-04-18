@@ -2,7 +2,6 @@ import Compra from '../models/compra.js'
 import aumentarStock from '../controllers/aumentarStock.js'
 import disminuirStock from '../controllers/disminuirStock.js'
 
-
 const CompraControllers = {
 
   compraGet: async (req, res) => {
@@ -11,30 +10,28 @@ const CompraControllers = {
       compra
     })
 
-  },
+  }, //correcto
 
   compraGetByid: async (req, res) => {
     const { id } = req.params;
     const compra = await Compra.findOne({ _id: id })
-   
+
     res.json({
-        compra
+      compra
     })
-},
+  }, //correcto
 
   compraPost: async (req, res) => {
     const { usuario, persona, tipoComprobante, serie_Comprobante, num_Comprobante, impuesto, total, detalles, } = req.body
-    const compra = new Compra({ usuario, persona,tipoComprobante,serie_Comprobante ,num_Comprobante,impuesto,total,detalles})
-    
-    await compra.save();
-    
+    const compra = new Compra({ usuario, persona, tipoComprobante, serie_Comprobante, num_Comprobante, impuesto, total, detalles })
 
+    await compra.save();
 
     await detalles.map((articulo) => aumentarStock(articulo._id, articulo.cantidad))
-    res.json({ 
+    res.json({
       compra
     })
-  },
+  }, //correcto
 
   compraPut: async (req, res) => {
     const { id } = req.params
@@ -44,7 +41,8 @@ const CompraControllers = {
     res.json({
       compra
     })
-  }, 
+  }, //correcto
+
   compraPutactivar: async (req, res) => {
     const { id } = req.params
     const compra = await Compra.findByIdAndUpdate(id, { estado: 1 });
@@ -54,7 +52,8 @@ const CompraControllers = {
       compra
     })
 
-  },
+  }, //correcto
+
   compraPutDesactivar: async (req, res) => {
     const { id } = req.params
     const compra = await Compra.findByIdAndUpdate(id, { estado: 0 });
@@ -63,7 +62,7 @@ const CompraControllers = {
     res.json({
       compra
     })
-  },
+  }, //correcto
 
   compraPutDelete: async (req, res) => {
     const { id } = req.params
@@ -72,7 +71,6 @@ const CompraControllers = {
       compra
     })
 
-  },
+  }, //correcto
 }
 export default CompraControllers
-// export default compraPost

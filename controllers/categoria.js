@@ -17,17 +17,17 @@ const categoriasControllers = {
         res.json({
             categoria
         })
-    },
+    },//correcto
 
     // getByid
-    categoriaGetByid: async (res, req) => {
+    categoriaGetByid: async (req, res) => {
         const { id } = req.params;
         const categoria = await Categoria.findOne({ _id: id })
 
         res.json({
             categoria
         })
-    },
+    },//correcto
 
     // post
     categoriaPost: async (req, res) => {
@@ -43,7 +43,8 @@ const categoriasControllers = {
             console.log(`Catch ${error}`);
         }
 
-    },
+    }, //correcto
+
     // put
     categoriaPut: async (req, res) => {
         const { id } = req.params
@@ -55,7 +56,7 @@ const categoriasControllers = {
             categoria
         })
 
-    },
+    },//correcto
 
     categoriaPutactivar: async (req, res) => {
         const { id } = req.params
@@ -64,7 +65,7 @@ const categoriasControllers = {
             categoria
         })
 
-    },
+    }, //correcto
 
     categoriaPutDesactivar: async (req, res) => {
         const { id } = req.params
@@ -73,7 +74,7 @@ const categoriasControllers = {
             categoria
         })
 
-    },
+    }, //correcto
 
     categoriaPutDelete: async (req, res) => {
         const { id } = req.params
@@ -82,6 +83,6 @@ const categoriasControllers = {
             categoria
         })
 
-    },
-}
+    }, //correcto
+} //correcto
 export default categoriasControllers

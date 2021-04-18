@@ -7,7 +7,7 @@ const usuarioControllers = {
 
     usuarioGet: async (req, res) => {
         const query = req.query.value
-        const usuarios = await Usuario.find({
+        const usuario = await Usuario.find({
             $or: [
                 { nombre: new RegExp(query, 'i') },
                 { email: new RegExp(query, 'i') },
@@ -17,9 +17,9 @@ const usuarioControllers = {
 
 
         res.json({
-            usuarios
+            usuario
         })
-    },
+    }, //correcto
 
     usuarioGetByid: async (req, res) => {
         const { id } = req.params
@@ -28,7 +28,7 @@ const usuarioControllers = {
         res.json({
             usuario
         })
-    }, 
+    }, //correcto
 
     usuarioPost: async (req, res) => {
         const { nombre, email, password, rol } = req.body;
@@ -43,7 +43,7 @@ const usuarioControllers = {
             usuario
         })
 
-    },
+    },//correcto
 
     login: async (req, res) => {
         const { email, password } = req.body;
@@ -77,7 +77,7 @@ const usuarioControllers = {
         })
 
 
-    },
+    },//correcto
 
     usuarioPut: async (req, res) => {
         const { id } = req.params
@@ -92,7 +92,7 @@ const usuarioControllers = {
             usuario
         })
 
-    },
+    },//correcto
 
     usuarioPutactivar: async (req, res) => {
         const { id } = req.params
@@ -101,7 +101,7 @@ const usuarioControllers = {
 
         res.json({ usuario })
 
-    },
+    },//correcto
 
     usuarioPutdesactivar: async (req, res) => {
         const { id } = req.params
@@ -110,8 +110,8 @@ const usuarioControllers = {
 
         res.json({ usuario })
 
-    },
+    },//correcto
 
-}
+}//correcto
 
 export default usuarioControllers
