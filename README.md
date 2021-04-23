@@ -21,3 +21,4 @@ proyecto base de js
 //     "password":"1234567",
 //     "rol":"VENDEDOR_ROL"
 // }
+//Funcionando Darien Romero 
