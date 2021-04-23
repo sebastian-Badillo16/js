@@ -2,6 +2,12 @@
   "name": "adsi-compraventa",
   "version": "1.0.0",
   "description": "Adsi sistema de compreventa2021",
+  "author": "Andres sebastian badillo vasquez ",
+  "scripts": {
+    "dev": "nodemon app",
+    "start": "node app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "main": "app.js",
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -14,13 +20,12 @@
     "vuetify": "^2.4.11",
     "vuex": "^3.6.2"
   },
-  "devDependencies": {},
-  "scripts": {
-    "start": "node app",
-    "dev": "nodemon app",
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "devDependencies": {
+    "sass": "^1.32.0",
+    "sass-loader": "^10.0.0",
+    "vue-cli-plugin-vuetify": "~2.3.1",
+    "vuetify-loader": "^1.7.0"
   },
-  "type": "module",
-  "author": "Andres sebastian badillo vasquez ",
-  "license": "ISC"
+  "license": "ISC",
+  "type": "module"
 }
